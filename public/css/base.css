@@ -1,0 +1,41 @@
+
+/*Flags*/
+.flag-info {
+    color: #C9C9C9 !important;
+}
+
+.flag-error{
+    color: #C9C9C9 !important;
+}
+
+.flag-greyed {
+    color: #C9C9C9 !important;
+}
+
+.flag-task {
+    color: #C9C9C9 !important;
+}
+
+.flag-warning {
+    color: #C9C9C9 !important;
+}
+
+.flag-fatal {
+    color: #C9C9C9 !important;
+}
+
+.flag-debug {
+    color: #C9C9C9 !important;
+}
+
+.flag-deploy{
+    color: #C9C9C9 !important;
+}
+
+.bg-green {
+    background-color: #8AE85F !important;
+}
+
+.content-white {
+    color: #fff !important;
+}

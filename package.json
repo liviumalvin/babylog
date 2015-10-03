@@ -4,7 +4,10 @@
     "winston": "latest",
     "mongodb": "latest",
     "express": ">=4.3.0",
-    "body-parser": ">=1.2.0"
+    "express-handlebars": "latest",
+    "body-parser": ">=1.2.0",
+    "mongoose": "latest",
+    "socket.io": "latest"
   },
   "name": "Babylog",
   "description": "A tiny logger which should do only that. Log everything. ",

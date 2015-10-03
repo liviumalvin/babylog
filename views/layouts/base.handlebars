@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Babylog</title>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.min.js"></script>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link rel="stylesheet" href="/css/material.min.css" />
+    <link rel="stylesheet" href="/css/base.css" />
+
+
+</head>
+<body>
+<div class="mdl-layout mdl-js-layout">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-textfield
+                        mdl-js-textfield
+                        mdl-textfield--expandable
+                        mdl-textfield--floating-label
+                        mdl-textfield--align-right
+                        ">
+                <label class="mdl-button mdl-js-button mdl-button--icon"
+                       for="fixed-header-drawer-exp">
+                    <i class="material-icons">search</i>
+                </label>
+                <div class="mdl-textfield__expandable-holder">
+                    <input class="mdl-textfield__input" type="text" name="sample"
+                           id="fixed-header-drawer-exp" />
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Babylog </span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="/dashboard">Dashboard</a>
+            <!--<a class="mdl-navigation__link" href="#">World.</a>
+            <a class="mdl-navigation__link" href="#">How</a>
+            <a class="mdl-navigation__link" href="#">Are</a>
+            <a class="mdl-navigation__link" href="#">You?</a>-->
+        </nav>
+    </div>
+    <main class="mdl-layout__content">
+        <div>
+            {{{ body }}}
+        </div>
+    </main>
+</div>
+</body>
+</html>

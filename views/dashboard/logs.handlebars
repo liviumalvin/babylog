@@ -1,0 +1,19 @@
+<script>
+    var run = "{{run}}"
+</script>
+<link rel="stylesheet" href="/css/dashboard.css" />
+
+<div class="mdl-grid" id="dashboard">
+    <div class="mdl-cell mdl-cell--8-col mdl-cell--12-col-tablet mdl-cell--12-col-phone" id="dashboard.logs"></div>
+    <div  class="mdl-cell mdl-cell--4-col mdl-cell--12-col-tablet mdl-cell--12-col-phone" id="dashboard.tasks"></div>
+</div>
+
+<!-- React -->
+<script src="/react/JSXTransformer.js"></script>
+<script src="/react/react-with-addons.js"></script>
+
+<!-- React components -->
+<script type="text/jsx" src="/react-components/Logs.js"></script>
+
+<!-- Dashboard controller -->
+<script type="text/jsx" src="/dashboard.logs.js"></script>

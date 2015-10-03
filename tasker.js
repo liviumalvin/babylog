@@ -31,11 +31,13 @@
     Server.tasks.add = function (name) {
         if (undefined === this.store[name]) {
 
-            this.store[name] = require("./tasks/" + name.replace(".", "/") + ".js");
+            this.store[name] = require("./tasks/" + name.replace(/\./g, "/") + ".js");
 
             try {
+
                 this.store[name].should.have.property("init");
                 return this.store[name].init(this.extendLib({}));
+
             } catch (e) {
                 //Silently move on, the task cannot init
             }

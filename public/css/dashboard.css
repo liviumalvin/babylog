@@ -1,0 +1,76 @@
+
+.mdl-log-cell {
+    padding:0px !important;
+}
+
+.mdl-letter-card {
+    padding:15px;
+}
+
+.mdl-square-card {
+    width:25px;
+    height:25px;
+}
+
+.mdl-letter-card-small {
+    padding:5px;
+}
+
+/*Tags*/
+[data-letter-card] {
+    background-color:#C9C9C9;
+}
+
+[data-letter-card="error"] {
+    background-color:#EBA0B9;
+    color: #fff;
+}
+
+[data-letter-card="warning"] {
+    background-color:#FAF9AF;
+}
+
+[data-letter-card="fatal"] {
+    background-color:#F25E5E;
+    color: #fff;
+}
+
+[data-letter-card="task"] {
+    background-color:#61D4B3;
+    color: #fff;
+}
+
+.task-card {
+    width: 188px;
+    height: 128px;
+    background: #F0F0F0;
+    margin:5px;
+}
+
+.task-card .mdl-card__title > h4 {
+    margin-top: 0;
+}
+
+.task-card .mdl-card__title {
+    align-items: flex-start;
+}
+
+.task-card .mdl-card__actions {
+    display: flex;
+    box-sizing:border-box;
+    align-items: center;
+}
+
+
+.task-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.mdl-typography {
+    display: block;
+}
+
+

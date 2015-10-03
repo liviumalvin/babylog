@@ -2,7 +2,9 @@
     "use strict";
 
     var Http = {
-        instance : require("express")()
+        express: require("express"),
+        instance : null,
+        http: require("http")
     };
 
     /**
@@ -20,24 +22,44 @@
      * @returns {*}
      */
     Http.initialize = function (lib) {
-        var parser;
+        var parser,
+            handlebars;
 
         parser          = require("body-parser");
+        handlebars      = require("express-handlebars");
 
         this.lib        = lib;
+        this.instance   = this.express();
         this.checkDependencies();
 
         this.instance.use(parser.json());
         this.instance.use(parser.urlencoded({ extended: true }));
 
+        this.instance.engine('handlebars', handlebars({ defaultLayout: 'base'}));
+        this.instance.set('view engine', 'handlebars');
+        this.instance.disable('etag');
+
+        this.lib.winston.debug("Setting static to " + __dirname + "/../../public/");
+        this.instance.use("/", this.express.static(__dirname + "/../../public/"));
+
         return this.instance;
     };
 
     Http.run = function (lib) {
+        var server;
 
         this.checkDependencies();
         this.lib.winston.info("Starting http server on port " + this.lib.config.http.port);
-        this.instance.listen(this.lib.config.http.port);
+
+        server = this.http.createServer(this.instance);
+
+        lib.socket = lib.socket(server);
+
+        lib.app.tasks.run('socket.listeners', {socketServer: lib.socket});
+
+        server.listen(this.lib.config.http.port, function () {
+            this.lib.winston.info("Express HTTP server started on : " + this.lib.config.http.port);
+        }.bind(this));
 
     };
 
@@ -50,7 +72,7 @@
             return Http.initialize(lib);
         },
         run: function (lib) {
-            return Http.run();
+            return Http.run(lib);
         }
     };
 }());

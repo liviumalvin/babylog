@@ -3,12 +3,10 @@
 
     var Task = {};
 
-    /**
-     * set listeners
-     */
+
     Task.setListeners = function () {
-        this.lib.events.on("logs", function (request) {
-            this.lib.app.tasks.run("storage.logs." + this.lib.config.storage.driver, {
+        this.lib.events.on("runs", function (request) {
+            this.lib.app.tasks.run("storage.runs." + this.lib.config.storage.driver, {
                 request: request
             });
         }.bind(this));
@@ -31,11 +29,11 @@
         try {
 
             this.adapter = require(
-                                require('path').dirname(process.argv[1]) +
-                                '/adaptors/' +
-                                this.lib.config.storage.driver +
-                                '.js'
-                            );
+                require('path').dirname(process.argv[1]) +
+                '/adaptors/' +
+                this.lib.config.storage.driver +
+                '.js'
+            );
 
             this.lib.winston.debug("Driver found. Creating a new adapter");
         } catch (e) {
@@ -45,8 +43,9 @@
 
         this.setListeners();
 
+        //when ready
         this.lib.events.on(this.lib.config.storage.driver + ".ready", function () {
-            Task.lib.app.tasks.add("storage.logs." + Task.lib.config.storage.driver);
+            Task.lib.app.tasks.add("storage.runs." + Task.lib.config.storage.driver);
         });
 
         //Get adapter

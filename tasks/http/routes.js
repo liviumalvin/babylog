@@ -7,37 +7,81 @@
 
     //=========== ROUTES==============
 
+    Router.push({
+        route: "/dashboard",
+        type: "get",
+        handler: function (lib, request, response) {
+            response.render('dashboard/runs', {});
+        }
+    });
+
+    Router.push({
+        route: "/dashboard/logs/:run",
+        type: "get",
+        handler: function (lib, request, response) {
+            response.render('dashboard/logs', {
+                run: request.params.run
+            });
+        }
+    });
 
     /**
      * @route /log
      */
     Router.push({
-        route: "/log",
+        route: "/api/:item/:action",
         type: "get",
         handler: function (lib, request, response) {
 
-
-            try {
-                request.query.token.should.equal(lib.config.token);
-                response.write("Authenticated");
-            } catch (e) {
-                response.write("Authentication failed.");
-            }
+            response.setHeader("Content-type", "application/json");
+            request.query.action = request.params.action;
 
             try {
                 request.query.should.have.property("token");
-                request.query.should.have.property("app");
-                request.query.should.have.property("type");
-                request.query.should.have.property("title");
-                request.query.should.have.property("async");
-                request.query.should.have.property("data");
             } catch (e) {
-                response.write("Invalid request params [token,app,type,title,async,data]");
+                response.write(JSON.stringify({
+                    error: 1,
+                    message: "Invalid request params [token]"
+                }));
+                response.end();
+                return false;
             }
 
-            lib.events.emit('log', request.query);
+            try {
+                request.query.token.should.equal(lib.config.token);
+            } catch (e) {
+                response.write(JSON.stringify({
+                    error: 1,
+                    message: "Authentication failed."
+                }));
+                response.end();
+                return false;
+            }
 
-            response.end();
+            /**
+             * @event action.finish
+             */
+            lib.events.once([request.params.item,request.params.action].join('.') + ".finish", function (data) {
+                response.write(JSON.stringify({
+                    error: 0,
+                    data: data
+                }));
+                response.end();
+            });
+
+            /**
+             * @event action.error
+             */
+            lib.events.once([request.params.item,request.params.action].join('.') + ".error", function (message) {
+                response.write(JSON.stringify({
+                    error: 1,
+                    message: message
+                }));
+                response.end();
+            });
+
+            //Start log
+            lib.events.emit(request.params.item, request.query);
         }
     });
 
@@ -47,11 +91,13 @@
             handler(lib,request, response);
         }
     };
+
     /**
      * Public by facade
      * @param lib
      */
     module.exports.run = function (lib) {
+
         lib.should.have.property('http');
         lib.should.have.property('events');
 
