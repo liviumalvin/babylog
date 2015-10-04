@@ -76,6 +76,10 @@
         //Model
         LogItem = this.lib.storage.adapter.model("LogItems");
 
+        if (undefined !== lib.request.id) {
+            LogItemQuery._id = lib.request.id;
+        }
+
         if (undefined !== lib.request.unique ) {
             LogItemQuery.unique = lib.request.unique;
         } else {
@@ -125,7 +129,7 @@
                 , async     : Boolean
                 , date      : Date
                 , type      : String
-                , data      : Buffer
+                , data      : String
                 , unique    : String
                 , run       : this.lib.mongoose.Schema.Types.ObjectId
             }));

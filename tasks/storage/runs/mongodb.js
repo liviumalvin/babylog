@@ -72,17 +72,14 @@
         //Model
         RunItem = this.lib.storage.adapter.model("RunItems");
 
-        if (undefined !== lib.request.unique ) {
-            RunItemQuery.unique = lib.request.unique;
-        } else {
-            try {
-                lib.request.should.have.property("id");
-            } catch (e) {
-                lib.events.emit("runs.update.error", "Invalid update request structure. Needing the unique identifier or [app,title]");
-                return false;
-            }
-            RunItemQuery._id = lib.request.id;
+        try {
+            lib.request.should.have.property("id");
+        } catch (e) {
+            lib.events.emit("runs.update.error", "Invalid update request structure. Needing the run ObjectId");
+            return false;
         }
+        RunItemQuery._id = lib.request.id;
+
 
         //Model update
         RunItem.update(RunItemQuery, lib.request, function (error) {

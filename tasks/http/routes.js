@@ -25,13 +25,25 @@
         }
     });
 
+    Router.push({
+        route: "/dashboard/tasks/log/:taskid",
+        type: "get",
+        handler: function (lib, request, response) {
+            response.render('dashboard/tasks/log', {
+                taskId: request.params.taskid
+            });
+        }
+    });
+
     /**
      * @route /log
      */
     Router.push({
         route: "/api/:item/:action",
-        type: "get",
+        type: "post",
         handler: function (lib, request, response) {
+
+            request.query = request.body;
 
             response.setHeader("Content-type", "application/json");
             request.query.action = request.params.action;

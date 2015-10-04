@@ -34,7 +34,6 @@ Connection.on("connect", function () {
                 RunItems.unshift(item);
             });
 
-        console.log(RunItems);
         Dashboard.render.runs();
 
     });
@@ -58,7 +57,7 @@ Connection.on("run.created", function (run) {
 Connection.on("run.updated", function (runs) {
     var UpdatedRuns = [];
 
-    RunItems = RunItems.map(function (item, key) {
+    RunItems.map(function (item, key) {
         var found = false;
         runs.map(function (run) {
             if (run._id === item._id) {

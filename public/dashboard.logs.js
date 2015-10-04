@@ -44,6 +44,20 @@ Connection.on("connect", function () {
         LogTasks = [];
         LogDeploys = [];
 
+
+        if ("undefined" !== typeof taskId) {
+            items.map(function (item) {
+
+                React.render(
+                    <Logs.TaskLog data={item}/>,
+                    document.getElementById('dashboard')
+                );
+
+            });
+            return false;
+        }
+
+
         //Logs
         items
             .filter(function (item) {
@@ -73,11 +87,19 @@ Connection.on("connect", function () {
                 LogDeploys.unshift(item);
             });
         Dashboard.render.deploys();
-    });
 
-    Connection.emit("logs.get", {
-        run: run
+
+
     });
+    var criteria = {};
+
+    if ("undefined" !== typeof taskId) {
+        criteria["_id"] = taskId;
+    } else {
+        criteria["run"] = run;
+    }
+
+    Connection.emit("logs.get", criteria);
 });
 
 /**
@@ -86,19 +108,22 @@ Connection.on("connect", function () {
  */
 Connection.on("log.created", function (log) {
 
-    if (-1 === ['task', 'deploy'].indexOf(log.type)) {
-        LogItems.unshift(log);
-        Dashboard.render.logs();
-    }
+    if (log.run === run) {
 
-    if ("task" === log.type) {
-        LogTasks.unshift(log);
-        Dashboard.render.tasks();
-    }
+        if (-1 === ['task', 'deploy'].indexOf(log.type)) {
+            LogItems.unshift(log);
+            Dashboard.render.logs();
+        }
 
-    if ("deploy" === log.type) {
-        LogDeploys.unshift(log);
-        Dashboard.render.deploys();
+        if ("task" === log.type) {
+            LogTasks.unshift(log);
+            Dashboard.render.tasks();
+        }
+
+        if ("deploy" === log.type) {
+            LogDeploys.unshift(log);
+            Dashboard.render.deploys();
+        }
     }
 });
 
@@ -113,9 +138,20 @@ Connection.on("log.updated", function (logs) {
         UpdatedDeploys = [];
 
     logs.map(function (log) {
+
         UpdatedLogs = [];
         UpdatedTasks = [];
         UpdatedDeploys = [];
+
+        if ("undefined" !== typeof taskId) {
+            if (log._id === taskId) {
+                React.render(
+                    <Logs.TaskLog data={log}/>,
+                    document.getElementById('dashboard')
+                );
+            }
+            return false;
+        }
 
         if (log.run === run) {
 

@@ -109,6 +109,10 @@ window.Logs = {};
 
     Logs.Task = React.createClass({
 
+        getTaskLogsHref: function () {
+            return "/dashboard/tasks/log/" + this.props.data._id
+        },
+
         getTaskAsyncStatus: function () {
 
             var asyncStatus = {
@@ -116,9 +120,9 @@ window.Logs = {};
                             <div className="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
                         </div>,
                 "false": <div className="mdl-card__actions mdl-card--border">
-                            <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                            <button className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href={this.getTaskLogsHref()}>
                                 SEE LOGS
-                            </a>
+                            </button>
                             <div className="mdl-layout-spacer"></div>
                             <i className="material-icons">done_all</i>
 
@@ -180,10 +184,13 @@ window.Logs = {};
         componentDidUpdate: function () {
             this.updateProgressBar();
         },
+        switchToLogs: function () {
+            return "window.location.href = " + this.getTaskLogsHref();
+        },
         render: function() {
 
             return (
-                <div className="task-card mdl-card mdl-color--contrast mdl-shadow--2dp">
+                <a className="task-card mdl-card mdl-color--contrast mdl-shadow--2dp" href={this.getTaskLogsHref()}>
 
                     <div className="mdl-card__title
                                     mdl-card--expand
@@ -221,8 +228,18 @@ window.Logs = {};
                     {this.getTaskAsyncStatus()}
 
 
-                </div>
+                </a>
             );
+        }
+    });
+
+    Logs.TaskLog = React.createClass({
+        render: function () {
+            return (
+                <div>
+                    {this.props.data.data}
+                </div>
+            )
         }
     });
 
