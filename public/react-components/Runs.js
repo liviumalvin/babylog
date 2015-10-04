@@ -50,7 +50,7 @@ window.Runs = {};
                     "with_errors": "With errors",
                     "finished": "OK"
                 };
-
+            console.log(this.props.data.status);
             return texts[this.props.data.status];
         },
         getRunStatus: function () {
