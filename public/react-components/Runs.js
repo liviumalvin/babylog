@@ -48,7 +48,7 @@ window.Runs = {};
             var texts = {
                     "started" : "Started",
                     "with_errors": "With errors",
-                    "success": "OK"
+                    "finished": "OK"
                 };
 
             return texts[this.props.data.status];
