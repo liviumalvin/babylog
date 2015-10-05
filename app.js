@@ -11,7 +11,9 @@
 
     //Events
     Events = require("events");
+
     Events = new Events.EventEmitter();
+    Events.setMaxListeners(1000);
 
     //Config
     Config = require("./config/app.json");

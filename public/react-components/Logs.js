@@ -184,9 +184,6 @@ window.Logs = {};
         componentDidUpdate: function () {
             this.updateProgressBar();
         },
-        switchToLogs: function () {
-            return "window.location.href = " + this.getTaskLogsHref();
-        },
         render: function() {
 
             return (
@@ -234,11 +231,12 @@ window.Logs = {};
     });
 
     Logs.TaskLog = React.createClass({
+        getHtml: function () {
+            return {__html: this.props.data.data};
+        },
         render: function () {
             return (
-                <div>
-                    {this.props.data.data}
-                </div>
+                <div dangerouslySetInnerHTML={this.getHtml()}></div>
             )
         }
     });
