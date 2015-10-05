@@ -32,8 +32,8 @@
         this.instance   = this.express();
         this.checkDependencies();
 
-        this.instance.use(parser.json());
-        this.instance.use(parser.urlencoded({ extended: true }));
+        this.instance.use(parser.json({ limit: "50mb"}));
+        this.instance.use(parser.urlencoded({ limit: "50mb", extended: true }));
 
         this.instance.engine('handlebars', handlebars({ defaultLayout: 'base'}));
         this.instance.set('view engine', 'handlebars');
