@@ -17,5 +17,9 @@
   },
   "engines" : {
     "node": ">= 0.10.0"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "docker": "./docker.bash mongo && ./docker.bash node"
   }
 }

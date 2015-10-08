@@ -1,0 +1,18 @@
+{
+  "http": {
+    "port": 25601,
+    "host": "babylog_node"
+  },
+  "storage": {
+    "driver": "mongodb",
+    "mongodb": {
+      "host": "babylog_mongo",
+      "port": "27017",
+      "user": "",
+      "pass": "",
+      "database": "babylog"
+    }
+  },
+  "token": "72834897325j20j3f28j39j",
+  "log_level": "debug"
+}

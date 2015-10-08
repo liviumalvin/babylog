@@ -16,7 +16,11 @@
     Events.setMaxListeners(1000);
 
     //Config
-    Config = require("./config/app.json");
+    if ("docker" === process.env.NODE_ENV) {
+        Config = require("./config/docker.json");
+    } else {
+        Config = require("./config/app.json");
+    }
 
     //Winston
     Winston = require("winston");
