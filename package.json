@@ -7,19 +7,27 @@
     "express-handlebars": "latest",
     "body-parser": ">=1.2.0",
     "mongoose": "latest",
-    "socket.io": "latest"
+    "socket.io": "latest",
+    "mocha": "~2.3.3",
+    "eslint-plugin-react": "~3.5.1"
   },
   "name": "Babylog",
   "description": "A tiny logger which should do only that. Log everything. ",
-  "version" : "0.1.0",
+  "version": "0.1.0",
   "author": {
     "name": "Cornita Liviu"
   },
-  "engines" : {
+  "engines": {
     "node": ">= 0.10.0"
   },
   "scripts": {
     "start": "node app.js",
-    "docker": "./docker.bash mongo && ./docker.bash node"
+    "docker": "./docker.bash mongo && ./docker.bash node",
+    "eslint": "eslint .",
+    "test": "node_modules/.bin/mocha --reporter spec",
+    "pretest": "npm install && npm run eslint"
+  },
+  "devDependencies": {
+    "eslint-plugin-react": "~3.5.1"
   }
 }
