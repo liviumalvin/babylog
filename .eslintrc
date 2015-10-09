@@ -15,17 +15,37 @@
         "semi": [
             2,
             "always"
-        ]
+        ],
+        "no-unused-vars": [
+            2,
+            {
+                "args": "none"
+            }
+        ],
+        "no-console": 0
     },
     "env": {
         "es6": true,
         "node": true,
-        "mocha": true
+        "mocha": true,
+        "browser": true
     },
     "extends": "eslint:recommended",
     "ecmaFeatures": {
         "jsx": true,
         "experimentalObjectRestSpread": true
+    },
+    "globals": {
+        "React": true,
+        "MaterialProgress": true,
+        "Logs": true,
+        "Runs": true,
+        "io": true,
+        "i_config": true,
+        "run": true,
+        "taskId": true,
+        "system": true,
+        "Queue": true
     },
     "plugins": [
         "react"

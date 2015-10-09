@@ -7,9 +7,9 @@ window.system = {};
 /**
  * Bootstrap stuff
  */
-(function (facade) {
-    "use strict";
+(function(facade) {
+  "use strict";
 
-    //Init socket connection
-    facade.socket = io.connect(host);
+  //Init socket connection
+  facade.socket = io.connect(host);
 }(system));

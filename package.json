@@ -25,9 +25,11 @@
     "docker": "./docker.bash mongo && ./docker.bash node",
     "eslint": "eslint .",
     "test": "node_modules/.bin/mocha --reporter spec",
-    "pretest": "npm install && npm run eslint"
+    "pretest": "npm run eslint"
   },
   "devDependencies": {
-    "eslint-plugin-react": "~3.5.1"
+    "eslint-plugin-react": "~3.5.1",
+    "esformatter": "~0.7.3",
+    "react": "~0.14.0"
   }
 }
