@@ -30,8 +30,7 @@ Dashboard.render = {
     }
 };
 
-//Init socket connection
-Connection = io.connect("http://localhost:25601"); //@todo please take this out to env vars
+
 
 /**
  * @event connect
@@ -56,7 +55,6 @@ Connection.on("connect", function () {
             });
             return false;
         }
-
 
         //Logs
         items

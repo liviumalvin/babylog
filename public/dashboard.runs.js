@@ -26,19 +26,7 @@ Connection = io.connect("http://localhost:25601"); //@todo please take this out 
 Connection.on("connect", function () {
 
 
-    Connection.on("runs.search", function (items) {
-        RunItems = [];
-        //Runs
-        items
-            .map(function (item) {
-                RunItems.unshift(item);
-            });
 
-        Dashboard.render.runs();
-
-    });
-
-    Connection.emit("runs.get", {});
 });
 
 /**

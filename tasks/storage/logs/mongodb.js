@@ -28,11 +28,11 @@
         try{
             lib.request.should.have.property("type");
             lib.request.should.have.property("title");
-            lib.request.should.have.property("async");
+            lib.request.should.have.property("status");
             lib.request.should.have.property("data");
-        } catch (e) {
+        } catch (error) {
             lib.winston.error("Could not save log: " + error.toString());
-            lib.events.emit("logs.store.error", "Invalid request params [app, type, title, async, data]");
+            lib.events.emit("logs.store.error", "Invalid request params [app, type, title, status, data]");
             return false;
         }
 
@@ -40,10 +40,10 @@
 
         //Create and save the log item
         log = new LogItem();
-        log.async   = lib.request.async || false;
+        log.status   = lib.request.status || false;
         log.title   = lib.request.title;
-        log.data    = new Buffer(lib.request.data);
         log.type    = lib.request.type || "info";
+        log.data    = new Buffer(lib.request.data);
         log.date    = new Date();
         log.unique  = lib.request.unique || Math.random().toString(10)
 
@@ -80,6 +80,10 @@
             LogItemQuery._id = lib.request.id;
         }
 
+        if (undefined !== lib.request.run) {
+            LogItemQuery.run = lib.request.run;
+        }
+
         if (undefined !== lib.request.unique ) {
             LogItemQuery.unique = lib.request.unique;
         } else {
@@ -99,7 +103,7 @@
 
             if (error) {
                 lib.winston.error("Could not save log: " + error.toString());
-                lib.events.emit("logs.update.error", "An error occurred when trying to save the log item");
+                lib.events.emit("logs.update.error", "An error occurred when trying to save the log item: " + error.toString());
                 return false;
             }
 
@@ -126,12 +130,12 @@
         try {
             this.lib.storage.adapter.model("LogItems", new this.lib.mongoose.Schema({
                   title     : String
-                , async     : Boolean
+                , status    : String
                 , date      : Date
                 , type      : String
                 , data      : String
                 , unique    : String
-                , run       : this.lib.mongoose.Schema.Types.ObjectId
+                , run       : String
             }));
         } catch (e) {
             this.lib.winston.error("Model failed to initialize");
@@ -142,6 +146,7 @@
         this.lib.winston.debug("Model initialized.");
         return false;
     };
+
 
     Task.find = function (query) {
         var LogItem;

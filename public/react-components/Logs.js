@@ -23,6 +23,7 @@ window.Logs = {};
         }
     });
 
+
     Logs.Item = React.createClass({
 
         getClock: function () {
@@ -114,7 +115,6 @@ window.Logs = {};
         },
 
         getTaskAsyncStatus: function () {
-
             var asyncStatus = {
                 "true" : <div className="mdl-card__actions">
                             <div className="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
@@ -128,8 +128,7 @@ window.Logs = {};
 
                         </div>,
             };
-
-            return asyncStatus[this.props.data.async.toString()];
+            return asyncStatus[this.props.data.status.toString()];
         },
 
         getTaskStatusText: function () {
@@ -153,14 +152,14 @@ window.Logs = {};
 
                             </div>
                 };
-                return asyncStatus[this.props.data.async.toString()];
+
+                return asyncStatus[this.props.data.status.toString()];
         },
 
         getClock: function () {
             var time;
 
             time = new Date(this.props.data.date);
-
             return [
                 time.getHours(),
                 time.getMinutes(),
@@ -188,12 +187,9 @@ window.Logs = {};
 
             return (
                 <a className="task-card mdl-card mdl-color--contrast mdl-shadow--2dp" href={this.getTaskLogsHref()}>
-
                     <div className="mdl-card__title
                                     mdl-card--expand
                                     mdl-grid">
-
-
 
                         <div className="mdl-cell--10-col">
                             <span className="mdl-typography--menu-color-contrast mdl-typography--text-uppercase ">
@@ -230,9 +226,15 @@ window.Logs = {};
         }
     });
 
+    /**
+     * TaskLog
+     * Renders on the task log page
+     */
     Logs.TaskLog = React.createClass({
         getHtml: function () {
-            return {__html: this.props.data.data};
+            return {
+                "__html": this.props.data.data.replace(/\\r\\n/g, "<br />")
+            };
         },
         render: function () {
             return (

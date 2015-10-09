@@ -44,6 +44,7 @@
         run.title       = lib.request.title;
         run.running     = lib.request.running || true;
         run.status      = lib.request.status || "ok";
+        run.runId       = lib.request.runId || "";
         run.date        = new Date();
 
         run.save(function (error) {
@@ -73,13 +74,12 @@
         RunItem = this.lib.storage.adapter.model("RunItems");
 
         try {
-            lib.request.should.have.property("id");
+            lib.request.should.have.property("runId");
         } catch (e) {
-            lib.events.emit("runs.update.error", "Invalid update request structure. Needing the run ObjectId");
+            lib.events.emit("runs.update.error", "Invalid update request structure. Needing the run ObjectId or a temp ID");
             return false;
         }
-        RunItemQuery._id = lib.request.id;
-
+        RunItemQuery.runId = lib.request.runId;
 
         //Model update
         RunItem.update(RunItemQuery, lib.request, function (error) {
@@ -118,6 +118,7 @@
                 , running   : Boolean
                 , date      : Date
                 , status    : String
+                , runId     : String
             }));
         } catch (e) {
             this.lib.winston.error("Model failed to initialize");

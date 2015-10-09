@@ -30,10 +30,15 @@
 
         this.lib        = lib;
         this.instance   = this.express();
+
         this.checkDependencies();
 
         this.instance.use(parser.json({ limit: "50mb"}));
         this.instance.use(parser.urlencoded({ limit: "50mb", extended: true }));
+
+        this.instance.locals = {
+            host: [this.lib.config.http.host, this.lib.config.http.port].join(":")
+        };
 
         this.instance.engine('handlebars', handlebars({ defaultLayout: 'base'}));
         this.instance.set('view engine', 'handlebars');
@@ -45,6 +50,11 @@
         return this.instance;
     };
 
+    /**
+     * Run task.
+     * Create the http server
+     * @param lib
+     */
     Http.run = function (lib) {
         var server;
 
@@ -54,9 +64,7 @@
         server = this.http.createServer(this.instance);
 
         lib.socket = lib.socket(server);
-
         lib.app.tasks.run('socket.listeners', {socketServer: lib.socket});
-
         server.listen(this.lib.config.http.port, function () {
             this.lib.winston.info("Express HTTP server started on : " + this.lib.config.http.port);
         }.bind(this));

@@ -44,7 +44,6 @@
         handler: function (lib, request, response) {
 
             request.query = request.body;
-
             response.setHeader("Content-type", "application/json");
             request.query.action = request.params.action;
 

@@ -3,9 +3,6 @@ window.Runs = {};
 (function (Runs) {
     "use strict";
 
-
-
-
     Runs.Items = React.createClass({
         render: function() {
             var items;
@@ -50,7 +47,7 @@ window.Runs = {};
                     "with_errors": "With errors",
                     "finished": "OK"
                 };
-            console.log(this.props.data.status);
+
             return texts[this.props.data.status];
         },
         getRunStatus: function () {
@@ -102,10 +99,8 @@ window.Runs = {};
             ].join(":")
         },
 
-
-
         getLogHref: function () {
-            return "/dashboard/logs/" + this.props.data._id;
+            return "/dashboard/logs/" + this.props.data.runId;
         },
 
         render: function() {
