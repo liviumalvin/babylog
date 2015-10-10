@@ -1,7 +1,7 @@
 {
   "http": {
     "port": 25601,
-    "host": "babylog_node"
+    "host": "localhost"
   },
   "storage": {
     "driver": "mongodb",
