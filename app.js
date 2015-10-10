@@ -1,4 +1,4 @@
-(function() {
+module.exports = (function () {
   var App,
     Events,
     Winston,
@@ -48,5 +48,5 @@
   App.tasks.run("http.routes");
   App.tasks.run("http.create");
 
-
+  return App;
 }());
