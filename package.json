@@ -23,9 +23,9 @@
   "scripts": {
     "start": "node app.js",
     "docker": "./docker.bash mongo && ./docker.bash node",
-    "eslint": "eslint .",
     "test": "node_modules/.bin/mocha --reporter spec",
-    "pretest": "npm run eslint"
+    "lint": "eslint .",
+    "format": "esformatter -c .eslintrc -i *.js"
   },
   "devDependencies": {
     "eslint-plugin-react": "~3.5.1",
