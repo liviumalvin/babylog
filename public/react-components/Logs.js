@@ -116,10 +116,10 @@ window.Logs = {};
 
     getTaskAsyncStatus: function() {
       var asyncStatus = {
-        "true": <div className="mdl-card__actions">
+        "running": <div className="mdl-card__actions">
                             <div className="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
                         </div>,
-        "false": <div className="mdl-card__actions mdl-card--border">
+        "finished": <div className="mdl-card__actions mdl-card--border">
                             <button className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href={this.getTaskLogsHref()}>
                                 SEE LOGS
                             </button>
@@ -133,7 +133,7 @@ window.Logs = {};
 
     getTaskStatusText: function() {
       var asyncStatus = {
-        "true": <div className="mdl-cell--12-col
+        "running": <div className="mdl-cell--12-col
                                         mdl-typography--text-uppercase
                                         mdl-typography--text-center
                                         mdl-typography--body-color-contrast
@@ -142,7 +142,7 @@ window.Logs = {};
                                 Running
 
                             </div>,
-        "false": <div className="mdl-cell--12-col
+        "finished": <div className="mdl-cell--12-col
                                         mdl-typography--text-uppercase
                                         mdl-typography--text-center
                                         mdl-typography--body-color-contrast
