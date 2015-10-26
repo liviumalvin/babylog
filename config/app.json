@@ -1,7 +1,8 @@
 {
   "http": {
     "port": 25601,
-    "host": "localhost"
+    "host": "localhost",
+    "wsocket_host": "babylog.qbyco.ro"
   },
   "storage": {
     "driver": "mongodb",

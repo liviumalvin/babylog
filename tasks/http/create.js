@@ -42,7 +42,7 @@
     }));
 
     this.instance.locals = {
-      host: [this.lib.config.http.host, this.lib.config.http.port].join(":")
+      host: this.lib.config.http.wsocket_host
     };
 
     this.instance.engine("handlebars", handlebars({
