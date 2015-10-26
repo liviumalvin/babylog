@@ -17,28 +17,7 @@
 }
 
 /*Tags*/
-[data-letter-card] {
-    background-color:#C9C9C9;
-}
 
-[data-letter-card="error"] {
-    background-color:#EBA0B9;
-    color: #fff;
-}
-
-[data-letter-card="warning"] {
-    background-color:#FAF9AF;
-}
-
-[data-letter-card="fatal"] {
-    background-color:#F25E5E;
-    color: #fff;
-}
-
-[data-letter-card="task"] {
-    background-color:#61D4B3;
-    color: #fff;
-}
 
 .task-card {
     width: 188px;

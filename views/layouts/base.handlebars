@@ -5,65 +5,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Babylog</title>
 
+    <!-- Vendor - bootstrap-->
+    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap-darkly-theme.min.css">
+    <script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- custom css-->
+    <link rel="stylesheet" href="/css/base.css">
+
     <!--Config-->
     <script type="text/javascript">
         var host = "{{host}}";
     </script>
 
     <script src="/socket.io/socket.io.js"></script>
-    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.min.js"></script>
 
     <!-- Queue -->
     <script type="text/javascript" src="/lib/queue.js"></script>
 
-    <!-- Bootstrap -->
+    <!-- App Bootstrap -->
     <script type="text/javascript" src="/bootstrap.js"></script>
 
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
-    <link rel="stylesheet" href="/css/material.min.css" />
-    <link rel="stylesheet" href="/css/base.css" />
+
 
 
 </head>
 <body>
-<div class="mdl-layout mdl-js-layout">
-    <header class="mdl-layout__header">
-        <div class="mdl-layout__header-row">
-            <div class="mdl-layout-spacer"></div>
-            <div class="mdl-textfield
-                        mdl-js-textfield
-                        mdl-textfield--expandable
-                        mdl-textfield--floating-label
-                        mdl-textfield--align-right
-                        ">
-                <label class="mdl-button mdl-js-button mdl-button--icon"
-                       for="fixed-header-drawer-exp">
-                    <i class="material-icons">search</i>
-                </label>
-                <div class="mdl-textfield__expandable-holder">
-                    <input class="mdl-textfield__input" type="text" name="sample"
-                           id="fixed-header-drawer-exp" />
+    <div class="container-fluid">
+
+        <div class="row hidden-md hidden-lg">
+
+            <div class="col-xs-12 col-sm-12" style="background-color:green; height:100px">
+                test on small
+            </div>
+
+        </div>
+
+        <div class="row hidden-xs hidden-sm col-md-12 col-lg-12" style="height: 50px">
+
+        </div>
+
+        <div class="row col-md-offset-1 col-md-12">
+
+            <!-- side nav-->
+            <div class="col-md-2">
+
+                <div class="row">
+                    <div class="input-group">
+                        <input type="text" class="form-control input-search" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-default btn-input-embedded">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
                 </div>
+
+                <div class="row top10px">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active">
+                            <a href="/dashboard"> Runs </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="col-md-10" >
+                {{{ body }}}
             </div>
         </div>
-    </header>
-    <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">Babylog </span>
-        <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="/dashboard">Dashboard</a>
-            <!--<a class="mdl-navigation__link" href="#">World.</a>
-            <a class="mdl-navigation__link" href="#">How</a>
-            <a class="mdl-navigation__link" href="#">Are</a>
-            <a class="mdl-navigation__link" href="#">You?</a>-->
-        </nav>
     </div>
-    <main class="mdl-layout__content">
-        <div>
-            {{{ body }}}
-        </div>
-    </main>
-</div>
 </body>
 </html>

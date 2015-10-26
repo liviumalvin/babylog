@@ -39,3 +39,29 @@
 .content-white {
     color: #fff !important;
 }
+
+/* Bootstrap overrides */
+.top10px { margin-top:10px; }
+body { background-color: #282E33 }
+div.row { padding:5px; }
+ul.nav li.active a { color:#fff; background-color: #FF3838; }
+ul.nav li.active a:hover { color:#fff; background-color: #AD3838; }
+input.input-search { background-color: #495E67; border: none; }
+input.input-search:focus { border: none; }
+button.btn-input-embedded { background-color: #495E67; border: none; padding:12px; color:#282E33 }
+button.btn-input-embedded:hover { background-color: #495E67; border: none; padding:12px; color:#fff; outline:none; }
+button.btn-input-embedded:active { background-color: #495E67; border: none; padding:12px; color:#fff; outline:none; }
+button.btn-input-embedded:active:hover { background-color: #495E67; border: none; padding:12px; color:#fff; outline:none; }
+button.btn-input-embedded:active:focus { background-color: #495E67; border: none; padding:12px; color:#fff; outline:none; }
+button.btn-input-embedded:focus { background-color: #495E67; border: none; padding:12px; color:#fff; outline:none; }
+
+
+/** Flag cards **/
+td.lettercard { text-transform: uppercase; }
+td.lettercard div { display:block; width: 40px; height: 40px; text-align:center; line-height: 40px; }
+
+div[data-letter-card] { background-color:#C9C9C9; color: #282E33; }
+div[data-letter-card="error"] { background-color:#EBA0B9; color: #fff; }
+div[data-letter-card="warning"] { background-color:#FAF9AF; }
+div[data-letter-card="fatal"] { background-color:#F25E5E; color: #fff; }
+div[data-letter-card="task"] { background-color:#61D4B3; color: #fff; }

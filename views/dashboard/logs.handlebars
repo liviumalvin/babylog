@@ -1,13 +1,25 @@
 <script>
-    var run = "{{run}}"
+    var run = "{{ run }}"
 </script>
 
-<link rel="stylesheet" href="/css/dashboard.css" />
 
-<div class="mdl-grid" id="dashboard">
-    <div class="mdl-cell mdl-cell--8-col mdl-cell--12-col-tablet mdl-cell--12-col-phone" id="dashboard.logs"></div>
-    <div  class="mdl-cell mdl-cell--4-col mdl-cell--12-col-tablet mdl-cell--12-col-phone" id="dashboard.tasks"></div>
+
+<!-- Tasks -->
+<div class="row col-md-8 col-lg-8">
+    <h4>Tasks</h4>
+    <hr />
 </div>
+<div class="row col-md-8 col-lg-8" id="dashboard.tasks"></div>
+
+<!-- Logs-->
+<div class="row col-md-8 col-lg-8">
+    <h4>Logs</h4>
+    <hr />
+</div>
+<div class="row col-md-8 col-lg-8" id="dashboard.logs"></div>
+
+
+<link rel="stylesheet" href="http://css-spinners.com/css/spinner/three-quarters.css" type="text/css">
 
 <!-- React -->
 <script src="/react/JSXTransformer.js"></script>
